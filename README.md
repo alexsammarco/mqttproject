@@ -1,2 +1,2 @@
 # mqttproject
-Final year project
+Final year project for solent university
