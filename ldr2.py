@@ -6,6 +6,7 @@ from gpiozero import LightSensor, Buzzer #import LDR and Buzzer from GPIO pin ze
 from time import sleep
 from time import strftime
 import datetime #Imports the date and time in to file
+import paho.mqtt.publish as publish
 
 ldr = LightSensor(4)
 buzzer = Buzzer(17)
@@ -17,8 +18,10 @@ while True: #continuously checks the light level on LDR
         if ldr.value < 0.8: #if LDR value falls below 0.5 buzzer will
             buzzer.beep(4) #how long the buzzer beeps for
             f.write(timestamp+","), #inserts time stamp in to analytics
-            f.write("1"+","),       #Inserts a one in to the analytics to show buzzer had sounded
+            f.write("1"+","),       #Insertsmqttproject a one in to the analytics to show buzzer had sounded
             f.write(str(ldr)+"\n"),
+            
+            publish.single("mqtt-events", ldr.value, hostname="test.mosquitto.org")
         else:
             buzzer.off()
             f.write(timestamp +","),
