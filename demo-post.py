@@ -16,13 +16,13 @@ params = {"protocol": "v2",
           "device"
           "at":timestamp,
           "data":dict(
-              temp=11
+              temp=11,
               hum=89)}
 binary_data = json.dumps(params).encode('ascii')
 
-header = {User.Agent": "rasberrycarriots",
-          "Content.Type: "application/json",
-          "carriots.apikey":api_key)
+header = {"User.Agent": "rasberrycarriots",
+          "Content.Type": "application/json",
+          "carriots.apikey":api_key}
 
 req = urllib.request.Request(api_url,binary_data,header)
 f = urllib.request.urlopen(req)
