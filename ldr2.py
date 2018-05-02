@@ -1,4 +1,3 @@
-#code derived from rasberrypiprojects.com
 import os 
 import sys
 import time                                                                                                                         
